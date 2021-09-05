@@ -7,9 +7,9 @@ const commentController = {
         Comment.create(body)
             .then(({ _id }) => {
                 return Pizza.findOneAndUpdate(
-                    { _id: params.pizzaId },
-                    { $push: { comments: _id } },
-                    { new: true }
+                  { _id: params.pizzaId },
+                  { $push: { comments: _id } },
+                  { new: true, runValidators: true }
                 );
             })
             .then(dbPizzaData => {
